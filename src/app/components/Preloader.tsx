@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -8,6 +8,28 @@ import { Flip } from "gsap/dist/Flip";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(Flip);
+}
+
+function preventDefaultScroll(e: Event) {
+    e.preventDefault();
+}
+
+function preventScrollKeys(e: KeyboardEvent) {
+    if ([32, 33, 34, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}
+
+function disableScrollEvents() {
+    window.addEventListener('wheel', preventDefaultScroll, { passive: false });
+    window.addEventListener('touchmove', preventDefaultScroll, { passive: false });
+    window.addEventListener('keydown', preventScrollKeys, false);
+}
+
+function enableScrollEvents() {
+    window.removeEventListener('wheel', preventDefaultScroll, { passive: false } as EventListenerOptions);
+    window.removeEventListener('touchmove', preventDefaultScroll, { passive: false } as EventListenerOptions);
+    window.removeEventListener('keydown', preventScrollKeys, false);
 }
 
 export default function Preloader() {
@@ -41,7 +63,17 @@ export default function Preloader() {
     }, { scope: container });
 
     useGSAP(() => {
+        if (typeof window !== "undefined") {
+            document.documentElement.style.overflowY = "scroll";
+            disableScrollEvents();
+        }
+
         if (!isLoaded || !albumRef.current || !vinylRef.current || !vinylWrapperRef.current) return;
+
+        const enableScroll = () => {
+            document.documentElement.style.overflowY = "";
+            enableScrollEvents();
+        };
 
         gsap.killTweensOf(albumRef.current);
 
@@ -75,16 +107,16 @@ export default function Preloader() {
                     const state = Flip.getState(vinylWrapperRef.current);
 
                     vinylWrapperRef.current.classList.remove("-z-10");
-
                     target.appendChild(vinylWrapperRef.current);
 
-                    // Start fading out overlay and disable pointer events
                     gsap.to(preloadOverlayRef.current, {
-                        // autoAlpha: 0,
                         opacity: 0,
                         duration: 1,
                         onComplete: () => {
-                            if (preloadOverlayRef.current) preloadOverlayRef.current.style.display = 'none';
+                            if (preloadOverlayRef.current) {
+                                preloadOverlayRef.current.style.display = 'none';
+                                enableScroll(); 
+                            }
                         }
                     });
 
@@ -99,6 +131,9 @@ export default function Preloader() {
                 }
             });
 
+        return () => {
+            enableScrollEvents();
+        };
     }, { dependencies: [isLoaded], scope: container });
 
     return (
