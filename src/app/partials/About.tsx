@@ -34,7 +34,7 @@ export default function About() {
                         </p>
                     </div>
                     <div className="about-text">
-                        <p className="text-2xl text-black leading-relaxed">
+                        <p className="text-2xl text-black leading-relaxed font-jakarta">
                             A cinematic aesthetic shaped by legendary filmmaker Tim Burton. A sonic exploration spanning punk, alternative, R&B, and jazz. This is the evolution of the Lord Pretty Flacko.
                         </p>
                     </div>

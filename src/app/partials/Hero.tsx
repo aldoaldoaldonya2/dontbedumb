@@ -44,7 +44,7 @@ export default function Hero() {
                 </div>
                 <div
                     id="vinyl"
-                    className="relative w-3/4 md:w-[400px] aspect-square flex items-center justify-center z-20"
+                    className="relative w-3/4 md:w-[400px] aspect-square select-none flex items-center justify-center z-20"
                 >
                 </div>
             </div>

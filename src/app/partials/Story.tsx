@@ -33,7 +33,7 @@ export default function Story() {
     });
 
     return (
-        <section id="story" className="relative min-h-screen w-full bg-[#111] overflow-hidden flex items-center px-10 py-20">
+        <section id="story" className="relative min-h-screen pb-20 w-full bg-[#111] overflow-hidden flex items-center px-10 py-20">
             <div className="story-bg absolute inset-0 opacity-20 pointer-events-none flex items-center justify-center">
                 <h1 className="text-[40vw] font-notable text-white select-none leading-none">DUMB</h1>
             </div>
@@ -54,7 +54,7 @@ export default function Story() {
                             <h3 className="text-3xl font-notable mb-4">TIM BURTON</h3>
                             <p className="text-white/40 font-mono text-sm uppercase tracking-widest">Visual Consultant / Art Direction</p>
                         </div> */}
-                        <img src="/assets/images/dontbedumb.jpg" alt="" />
+                        <img src="/assets/images/dontbedumb.jpg" className="select-none" alt="" />
                     </div>
                 </div>
             </div>
