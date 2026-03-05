@@ -5,55 +5,36 @@ import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-}
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function Navbar() {
     const navRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        let ctx = gsap.context(() => {
-            const showAnim = gsap.from(navRef.current, {
-                yPercent: -100,
-                paused: true,
-                duration: 0.3,
-                delay: 0.5,
-                ease: "power2.out"
-            }).progress(1);
+        const nav = navRef.current;
+        if (!nav) return;
 
-            ScrollTrigger.create({
-                start: "top top",
-                end: "max",
-                onUpdate: (self) => {
-                    if (self.direction === -1) {
-                        showAnim.play();
-                    } else if (self.direction === 1) {
-                        showAnim.reverse();
-                    }
-                }
-            });
-
-            gsap.set(navRef.current, { yPercent: -100 });
-
-            const handlePreloaderFinished = () => {
-                gsap.to(navRef.current, {
-                    delay: 3,
-                    yPercent: 0,
-                    visibility: "visible",
-                    duration: 0.8,
-                    ease: "power2.out"
-                });
-            };
-
-            window.addEventListener("preloaderFinished", handlePreloaderFinished);
-
-            return () => {
-                window.removeEventListener("preloaderFinished", handlePreloaderFinished);
-            };
+        const showNav = gsap.to(nav, {
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+            paused: true
         });
 
-        return () => ctx.revert();
+        ScrollTrigger.create({
+            start: "top -50",
+            onUpdate: (self) => {
+                if (self.direction === -1) {
+                    showNav.play();
+                } else if (self.direction === 1) {
+                    showNav.reverse();
+                }
+            }
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+        };
     }, []);
 
     const handleScroll = (e: React.MouseEvent<HTMLElement>, target: string) => {
@@ -62,21 +43,24 @@ export default function Navbar() {
             duration: 0.6,
             scrollTo: {
                 y: target,
-                offsetY: 20
+                offsetY: 0
             },
             ease: "power3.inOut"
         });
     };
 
     return (
-        <nav ref={navRef} className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-6 bg-background text-white">
+        <nav
+            ref={navRef}
+            className="fixed top-0 w-full -translate-y-full z-50 flex items-center justify-between px-10 py-6 bg-background text-white"
+        >
 
             <ul className="list-none flex gap-6 font-limelight text-xl">
                 <li>
                     <a
                         href="#about"
                         onClick={(e) => handleScroll(e, "#about")}
-                        className="hover:text-red-500 transition-colors duration-300"
+                        className="hover:text-gray-300 transition-colors duration-300"
                     >
                         About
                     </a>
@@ -85,7 +69,7 @@ export default function Navbar() {
                     <a
                         href="#music"
                         onClick={(e) => handleScroll(e, "#music")}
-                        className="hover:text-red-500 transition-colors duration-300"
+                        className="hover:text-gray-300 transition-colors duration-300"
                     >
                         Music
                     </a>
@@ -94,7 +78,7 @@ export default function Navbar() {
                     <a
                         href="#story"
                         onClick={(e) => handleScroll(e, "#story")}
-                        className="hover:text-red-500 transition-colors duration-300"
+                        className="hover:text-gray-300 transition-colors duration-300"
                     >
                         Story
                     </a>
