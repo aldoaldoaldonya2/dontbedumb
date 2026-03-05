@@ -1,4 +1,5 @@
 import Hero from "./partials/Hero";
+import Preloader from "./components/Preloader";
 
 export default function Index() {
   return (

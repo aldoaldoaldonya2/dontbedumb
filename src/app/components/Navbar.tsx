@@ -1,13 +1,61 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollToPlugin);
+    gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 }
 
 export default function Navbar() {
+    const navRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        let ctx = gsap.context(() => {
+            const showAnim = gsap.from(navRef.current, {
+                yPercent: -100,
+                paused: true,
+                duration: 0.4,
+                delay: 1,
+                ease: "power2.out"
+            }).progress(1);
+
+            ScrollTrigger.create({
+                start: "top top",
+                end: "max",
+                onUpdate: (self) => {
+                    if (self.direction === -1) {
+                        showAnim.play();
+                    } else if (self.direction === 1) {
+                        showAnim.reverse();
+                    }
+                }
+            });
+
+            gsap.set(navRef.current, { yPercent: -100 });
+
+            const handlePreloaderFinished = () => {
+                gsap.to(navRef.current, {
+                    delay: 1,
+                    yPercent: 0,
+                    visibility: "visible",
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            };
+
+            window.addEventListener("preloaderFinished", handlePreloaderFinished);
+
+            return () => {
+                window.removeEventListener("preloaderFinished", handlePreloaderFinished);
+            };
+        });
+
+        return () => ctx.revert();
+    }, []);
+
     const handleScroll = (e: React.MouseEvent<HTMLElement>, target: string) => {
         e.preventDefault();
         gsap.to(window, {
@@ -21,7 +69,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-6 bg-background text-white">
+        <nav ref={navRef} className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-6 bg-background text-white">
 
             <ul className="list-none flex gap-6 font-limelight text-xl">
                 <li>

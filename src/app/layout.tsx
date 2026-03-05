@@ -4,6 +4,7 @@ import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navbar from "./components/Navbar";
 import ScrollSmoother from "./components/ScrollSmoother";
+import Preloader from "./components/Preloader";
 
 const jakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body
         className={`${jakartaSans.variable} ${notable.variable} antialiased`}
       >
+        <Preloader />
         <Navbar />
         <ScrollSmoother>
           {children}
