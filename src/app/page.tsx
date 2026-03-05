@@ -4,6 +4,7 @@ import Preloader from "./components/Preloader";
 export default function Index() {
   return (
     <main className="">
+      {/* <Preloader /> */}
       <Hero />
       <div id="about" className="h-screen w-full bg-white"></div>
       <div id="music" className="h-screen w-full bg-gray-500"></div>
