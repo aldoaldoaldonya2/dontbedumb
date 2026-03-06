@@ -83,7 +83,7 @@ export default function Introduce() {
     }, { scope: triggerRef, dependencies: [characters.length] });
     7
     return (
-        <section ref={triggerRef} className="overflow-hidden bg-background">
+        <section ref={triggerRef} className="relative overflow-hidden bg-background">
             <div
                 ref={sectionRef}
                 className="flex h-screen relative will-change-transform transform-gpu"
