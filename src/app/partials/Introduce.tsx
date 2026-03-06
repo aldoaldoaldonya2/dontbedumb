@@ -55,12 +55,12 @@ const characters = [
 export default function Introduce() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
+    const totalSlides = characters.length + 1;
 
     useGSAP(() => {
         if (!sectionRef.current || !triggerRef.current) return;
 
-        // Calculate exact horizontal movement needed (0 to -400 for 5 characters)
-        const xPercentMove = -(characters.length - 1) * 100;
+        const xPercentMove = -100 * (totalSlides - 1);
 
         const pin = gsap.to(sectionRef.current, {
             xPercent: xPercentMove,
@@ -71,8 +71,7 @@ export default function Introduce() {
                 pin: true,
                 scrub: 0.5, // Lower value for snappier/smoother performance
                 start: "top top",
-                // End exactly when the horizontal scroll finishes, using container width
-                end: () => `+=${sectionRef.current!.scrollWidth - window.innerWidth}`,
+                end: () => `+=${sectionRef.current!.offsetWidth}`,
                 invalidateOnRefresh: true,
                 anticipatePin: 1,
             },
@@ -88,7 +87,7 @@ export default function Introduce() {
             <div
                 ref={sectionRef}
                 className="flex h-screen relative will-change-transform transform-gpu"
-                style={{ width: `${characters.length * 19.95}vw` }}
+                style={{ width: `${totalSlides * 14.2}vw` }}
             >
                 <div className="w-screen h-screen shrink-0 flex items-center justify-center p-10 md:p-20 relative overflow-hidden"
                     style={{ perspective: '1000px' }}>
