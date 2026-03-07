@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useRef } from "react";
 import { gsap } from "gsap";
@@ -52,56 +52,57 @@ const characters = [
     }
 ];
 
+const TOTAL_SLIDES = characters.length + 1;
+
 export default function Introduce() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const totalSlides = characters.length + 1;
 
     useGSAP(() => {
-        if (!sectionRef.current || !triggerRef.current) return;
-
-        const xPercentMove = -100 * (totalSlides - 1);
-
-        const pin = gsap.to(sectionRef.current, {
-            xPercent: xPercentMove,
-            ease: "none",
-            force3D: true, // Force GPU layer
-            scrollTrigger: {
-                trigger: triggerRef.current,
-                pin: true,
-                scrub: 0.5, // Lower value for snappier/smoother performance
-                start: "top top",
-                end: () => `+=${sectionRef.current!.offsetWidth}`,
-                invalidateOnRefresh: true,
-                anticipatePin: 1,
-            },
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                sectionRef.current,
+                { x: 0 },
+                {
+                    x: `-${(TOTAL_SLIDES - 1) * 100}vw`,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: triggerRef.current,
+                        start: "top top",
+                        end: () => `+=${(TOTAL_SLIDES - 1) * window.innerWidth}`,
+                        scrub: 0.6,
+                        pin: true,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                    },
+                }
+            );
         });
 
-        return () => {
-            pin.kill();
-        };
-    }, { scope: triggerRef, dependencies: [characters.length] });
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section ref={triggerRef} className="relative bg-background">
+        <div ref={triggerRef} className="overflow-hidden">
             <div
+                className={`flex w-[${TOTAL_SLIDES * 100}vw] h-screen flex-row will-change-transform transform-gpu`}
                 ref={sectionRef}
-                className="flex h-screen relative will-change-transform transform-gpu"
-            // style={{ width: `${totalSlides * 100}vw` }}
             >
-                <div className="w-screen h-screen shrink-0 flex items-center justify-center p-10 md:p-20 relative overflow-hidden"
-                    style={{ perspective: '1000px' }}>
+                {/* Intro slide */}
+                <div className="w-screen h-screen shrink-0 flex flex-col items-center justify-center p-10 md:p-20 relative">
                     <p className="text-xl md:text-2xl text-white/70 max-w-xl font-jakarta leading-relaxed">
                         Introducing.
                     </p>
                     <p className="text-8xl text-nowrap cursor-help font-notable">THEM.</p>
                 </div>
+
+                {/* Character slides */}
                 {characters.map((char, index) => (
                     <div
                         key={index}
-                        className="h-screen w-screen shrink-0 flex items-center justify-center p-10 md:p-20 relative overflow-hidden"
-                        style={{ perspective: '1000px' }}
+                        className="h-screen w-screen shrink-0 flex items-center justify-center p-10 md:p-20 relative"
                     >
-                        <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${char.color} blur-[100px] pointer-events-none`}></div>
+                        <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${char.color} blur-[100px] pointer-events-none`} />
 
                         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10">
                             <div className="space-y-6">
@@ -120,13 +121,13 @@ export default function Introduce() {
                             </div>
 
                             <div className="relative group">
-                                <div className={`absolute inset-0 bg-gradient-to-br ${char.color} opacity-20 blur-xl transition-opacity duration-700`}></div>
+                                <div className={`absolute inset-0 bg-gradient-to-br ${char.color} opacity-20 blur-xl transition-opacity duration-700`} />
                                 <div className="aspect-[4/5] bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center relative backdrop-blur-sm">
                                     <div className={`text-9xl opacity-20 ${char.font} text-white select-none`}>
                                         {char.name[0]}
                                     </div>
                                     <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end">
-                                        <div className="w-12 h-[1px] bg-white/30"></div>
+                                        <div className="w-12 h-[1px] bg-white/30" />
                                         <div className={`text-xs text-white/30 uppercase tracking-widest ${char.font}`}>
                                             DBDB_{char.name.replace(/\s+/g, '_').toUpperCase()}
                                         </div>
@@ -137,6 +138,6 @@ export default function Introduce() {
                     </div>
                 ))}
             </div>
-        </section>
+        </div>
     );
 }
