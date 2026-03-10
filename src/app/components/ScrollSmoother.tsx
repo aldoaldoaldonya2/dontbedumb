@@ -1,21 +1,34 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { gsap } from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import { Observer } from 'gsap/dist/Observer';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Observer);
 
 const GsapScrollSmoother = ({ children }: { children: React.ReactNode }) => {
   const smoother = useRef<ScrollSmoother | null>(null);
 
   useEffect(() => {
-    smoother.current = ScrollSmoother.create({
-      smooth: 1,
-      effects: true,
-      smoothTouch: 0.1,
-    });
+    if (typeof window !== "undefined") {
+      const wrapper = document.querySelector('#smooth-wrapper');
+      const content = document.querySelector('#smooth-content');
+
+      if (wrapper && content) {
+        smoother.current = ScrollSmoother.create({
+          wrapper: '#smooth-wrapper',
+          content: '#smooth-content',
+          smooth: 1.2,
+          effects: true,
+          smoothTouch: 0.1,
+          normalizeScroll: true,
+        });
+
+        ScrollTrigger.refresh();
+      }
+    }
 
     return () => {
       if (smoother.current) {
@@ -25,7 +38,7 @@ const GsapScrollSmoother = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div id="smooth-wrapper">
+    <div id="smooth-wrapper" style={{ overflow: 'hidden', width: '100%' }}>
       <div id="smooth-content">
         {children}
       </div>
