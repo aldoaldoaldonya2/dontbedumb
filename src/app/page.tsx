@@ -9,7 +9,6 @@ import Asap from "./partials/Asap";
 export default function Index() {
   return (
     <main className="">
-      {/* <Preloader /> */}
       <Hero />
       <Marquee />
       <About />

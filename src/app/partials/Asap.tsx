@@ -55,11 +55,11 @@ export default function Asap() {
     }, { scope: sectionRef });
 
     const content = (
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4 md:px-0">
             <div className="">
-                <p className='font-notable text-center text-7xl'>A<span className='font-lacquer'>$</span>AP Rocky</p>
+                <p className='font-notable text-center text-7xl max-md:text-4xl'>A<span className='font-lacquer'>$</span>AP Rocky</p>
                 <img src="/assets/images/gr1m.png" alt="" />
-                <div className="text-6xl">
+                <div className="text-6xl max-md:text-2xl">
                     <span className="font-bold">Rakim Mayers</span>, globally known as <span className='font-bold'>A$AP Rocky</span>, is more than just a rapper—he’s a cultural polymath.
                     <br />
                     Whether it's music, high fashion, or visual arts, Rocky has consistently pushed the boundaries of what it means to be a "modern rockstar."

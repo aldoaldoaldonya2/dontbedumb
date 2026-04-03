@@ -50,14 +50,14 @@ export default function Music() {
     });
 
     return (
-        <section id="music" className="min-h-screen w-full bg-black text-white py-20 px-10">
+        <section id="music" className="min-h-screen w-full bg-black text-white py-20 px-4 md:px-10">
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
                     <div>
-                        <h2 className="text-6xl font-notable mb-12">TRACKLIST</h2>
+                        <h2 className="text-6xl max-md:text-4xl font-notable mb-8 md:mb-12">TRACKLIST</h2>
                         <ul className="space-y-4">
                             {tracks.map((track, i) => (
-                                <li key={i} className="track-item flex items-center gap-4 text-xl border-b border-white/10 pb-2">
+                                <li key={i} className="track-item flex items-center gap-4 text-xl max-md:text-sm border-b border-white/10 pb-2">
                                     <span className="text-white/30 font-mono text-sm">{(i + 1).toString().padStart(2, '0')}</span>
                                     {track}
                                 </li>
@@ -65,17 +65,17 @@ export default function Music() {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="text-6xl font-notable mb-12">FEATURES</h2>
+                        <h2 className="text-6xl max-md:text-4xl font-notable mb-8 md:mb-12 mt-12 md:mt-0">FEATURES</h2>
                         <div id="features-list" className="flex flex-wrap gap-4">
                             {features.map((feature, i) => (
-                                <span key={i} className="feature-badge px-6 py-3 bg-white text-black font-bold text-lg rounded-full">
+                                <span key={i} className="feature-badge px-6 py-3 bg-white text-black font-bold text-lg max-md:text-sm max-md:px-4 max-md:py-2 rounded-full">
                                     {feature}
                                 </span>
                             ))}
                         </div>
                         <div className="mt-20">
-                            <h3 className="text-4xl font-lacquer mb-6">SONIC LANDSCAPE</h3>
-                            <p className="text-xl text-white/70 leading-relaxed">
+                            <h3 className="text-4xl max-md:text-2xl font-lacquer mb-6">SONIC LANDSCAPE</h3>
+                            <p className="text-xl max-md:text-base text-white/70 leading-relaxed">
                                 A masterclass in genre-bending. From the gritty punk energy of "Punk Rocky" to the smooth jazz-infused soul of "Whiseky". Produced by the best to redefine the sound of Harlem.
                             </p>
                         </div>

@@ -102,7 +102,7 @@ export default function Introduce() {
                     <p className="text-xl md:text-2xl text-white/70 max-w-xl font-jakarta leading-relaxed">
                         Introducing.
                     </p>
-                    <p className="text-8xl text-nowrap cursor-help font-notable">THEM.</p>
+                    <p className="text-8xl max-md:text-5xl text-nowrap cursor-help font-notable">THEM.</p>
                 </div>
 
                 {characters.map((char, index) => (
@@ -117,13 +117,13 @@ export default function Introduce() {
                                 <span className="text-white/40 font-mono text-sm uppercase tracking-[0.3em] block">
                                     Character 0{index + 1}
                                 </span>
-                                <h2 className={`text-5xl md:text-7xl text-white uppercase leading-tight ${char.font} wrap-break-word`}>
+                                <h2 className={`text-5xl md:text-7xl max-md:text-4xl text-white uppercase leading-tight ${char.font} wrap-break-word`}>
                                     {char.name}
                                 </h2>
-                                <h3 className="text-4xl md:text-5xl font-lacquer text-transparent bg-clip-text bg-linear-to-r from-white to-white/40">
+                                <h3 className="text-4xl md:text-5xl max-md:text-2xl font-lacquer text-transparent bg-clip-text bg-linear-to-r from-white to-white/40">
                                     {char.title}
                                 </h3>
-                                <p className="text-xl md:text-2xl text-white/70 max-w-xl font-jakarta leading-relaxed">
+                                <p className="text-xl md:text-2xl max-md:text-base text-white/70 max-w-xl font-jakarta leading-relaxed">
                                     {char.desc}
                                 </p>
                             </div>

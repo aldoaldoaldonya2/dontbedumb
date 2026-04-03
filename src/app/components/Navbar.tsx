@@ -123,13 +123,13 @@ export default function Navbar() {
             >
                 <button
                     onClick={toggleMenu}
-                    className="relative cursor-pointer flex justify-center items-center w-12 h-12 focus:outline-none group z-50 hover:scale-110 transition-transform"
+                    className="relative cursor-pointer flex justify-center items-center w-8 h-8 md:w-12 md:h-12 focus:outline-none group z-50 hover:scale-110 transition-transform"
                 >
                     <span className={`block absolute w-8 h-[2px] bg-white rounded-full transition-all duration-300 ${isMenuOpen ? "rotate-45" : "-translate-y-2 group-hover:w-6"}`}></span>
                     <span className={`block absolute w-6 h-[2px] bg-white rounded-full transition-all duration-300 ${isMenuOpen ? "opacity-0" : "opacity-100"}`}></span>
                     <span className={`block absolute w-8 h-[2px] bg-white rounded-full transition-all duration-300 ${isMenuOpen ? "-rotate-45" : "translate-y-2 group-hover:w-6"}`}></span>
                 </button>
-                <h1 className="text-3xl md:text-4xl text-nowrap -mt-2 absolute left-1/2 -translate-x-1/2 font-notable cursor-pointer"
+                <h1 className="text-xl md:text-4xl text-nowrap -mt-2 absolute left-1/2 -translate-x-1/2 font-notable cursor-pointer"
                     onClick={(e) => handleScroll(e, "#hero")}>
                     Don't Be Dumb
                 </h1>
