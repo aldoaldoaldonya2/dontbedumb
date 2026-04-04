@@ -11,11 +11,12 @@ if (typeof window !== "undefined") {
 export default function Story() {
     useGSAP(() => {
         gsap.to(".story-bg", {
-            yPercent: 20,
+            yPercent: 40,
             ease: "none",
             scrollTrigger: {
                 trigger: "#story",
-                scrub: true
+                scrub: true,
+                start: "top 20%",
             }
         });
 
