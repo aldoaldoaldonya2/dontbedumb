@@ -24,17 +24,17 @@ export default function About() {
     });
 
     return (
-        <section id="about" className="min-h-screen w-full bg-white flex flex-col justify-center py-20 px-10">
+        <section id="about" className="min-h-screen w-full bg-white flex flex-col justify-center py-20 px-6 md:px-10">
             <div className="container mx-auto">
-                <h2 className="about-text text-8xl font-notable mb-10 text-black">GHETTO EXPRESSIONISM</h2>
+                <h2 className="about-text text-8xl max-md:text-4xl font-notable mb-10 text-black">GHETTO EXPRESSIONISM</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
                     <div className="about-text">
-                        <p className="text-2xl text-black leading-relaxed">
+                        <p className="text-2xl max-md:text-lg text-black leading-relaxed">
                             "Don't Be Dumb" is more than an album—it's a fragmented self-portrait shaped by image, control, and careful self-curation. Inspired by German Expressionism and curated by A$AP Rocky and his alter egos.
                         </p>
                     </div>
                     <div className="about-text">
-                        <p className="text-2xl text-black leading-relaxed font-jakarta">
+                        <p className="text-2xl max-md:text-lg text-black leading-relaxed font-jakarta">
                             A cinematic aesthetic shaped by legendary filmmaker Tim Burton. A sonic exploration spanning punk, alternative, R&B, and jazz. This is the evolution of the Lord Pretty Flacko.
                         </p>
                     </div>

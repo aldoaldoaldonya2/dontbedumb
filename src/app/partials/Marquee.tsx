@@ -64,13 +64,13 @@ export default function Marquee() {
     const repeatedContent = new Array(8).fill(content).join("");
 
     return (
-        <section className="bg-black py-10 overflow-hidden border-y border-white/20">
+        <section className="bg-black py-10 max-md:py-6 overflow-hidden border-y border-white/20">
             <div className="flex whitespace-nowrap relative">
                 <div ref={marqueeRef} className="flex shrink-0">
-                    <div ref={textRef} className="marquee-text text-3xl md:text-3xl font-notable text-white uppercase leading-none px-3">
+                    <div ref={textRef} className="marquee-text text-3xl max-md:text-xl font-notable text-white uppercase leading-none px-3">
                         {repeatedContent}
                     </div>
-                    <div className="marquee-text text-3xl md:text-3xl font-notable text-white uppercase leading-none px-3">
+                    <div className="marquee-text text-3xl max-md:text-xl font-notable text-white uppercase leading-none px-3">
                         {repeatedContent}
                     </div>
                 </div>

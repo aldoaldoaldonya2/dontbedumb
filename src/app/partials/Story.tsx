@@ -11,11 +11,12 @@ if (typeof window !== "undefined") {
 export default function Story() {
     useGSAP(() => {
         gsap.to(".story-bg", {
-            yPercent: 20,
+            yPercent: 40,
             ease: "none",
             scrollTrigger: {
                 trigger: "#story",
-                scrub: true
+                scrub: true,
+                start: "top 20%",
             }
         });
 
@@ -33,18 +34,18 @@ export default function Story() {
     });
 
     return (
-        <section id="story" className="relative min-h-screen pb-20 w-full bg-[#111] overflow-hidden flex items-center px-10 py-20">
+        <section id="story" className="relative min-h-screen pb-20 w-full bg-[#111] overflow-hidden flex items-center px-4 md:px-10 py-20">
             <div className="story-bg absolute inset-0 opacity-20 pointer-events-none flex items-center justify-center">
                 <h1 className="text-[40vw] font-notable text-white select-none leading-none">DUMB</h1>
             </div>
 
             <div className="container mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                 <div className="story-content">
-                    <h2 className="text-8xl font-lacquer text-white mb-10 leading-none">THE MANIFESTO</h2>
-                    <p className="text-3xl text-white/80 font-bold mb-8 leading-tight">
+                    <h2 className="text-8xl max-md:text-5xl font-lacquer text-white mb-10 max-md:mb-6 leading-none">THE MANIFESTO</h2>
+                    <p className="text-3xl max-md:text-xl text-white/80 font-bold mb-8 max-md:mb-4 leading-tight">
                         "Common sense isn't common. Intelligence isn't about knowing all the answers; it's about the courage to ask the right questions."
                     </p>
-                    <p className="text-xl text-white/60 leading-relaxed max-w-xl">
+                    <p className="text-xl max-md:text-base text-white/60 leading-relaxed max-w-xl">
                         A$AP Rocky's return to the spotlight is a calculated collision of high art and raw street energy. Through the lens of "Ghetto Expressionism," urban life is transformed into a politically charged artistic statement. This is the lulllaby for the sophisticated ignorant.
                     </p>
                 </div>
