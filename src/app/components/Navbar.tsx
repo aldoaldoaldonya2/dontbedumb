@@ -158,7 +158,7 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <div className="absolute left-10 md:left-52 top-1/2 -translate-y-1/2 z-20">
+                <div className="absolute mt-10 left-10 md:left-52 top-1/2 -translate-y-1/2 z-20">
                     <ul ref={menuLinksRef} className="list-none flex flex-col gap-6 md:gap-8 font-limelight text-4xl md:text-5xl text-white">
                         <li className="overflow-hidden">
                             <a
@@ -207,6 +207,16 @@ export default function Navbar() {
                                 className="group relative inline-block transition-all duration-300 py-1"
                             >
                                 A$AP Rocky
+                                <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-white transition-all duration-500 ease-out group-hover:w-full"></span>
+                            </a>
+                        </li>
+                        <li className="overflow-hidden">
+                            <a
+                                href="#listen"
+                                onClick={(e) => handleScroll(e, "#listen")}
+                                className="group relative inline-block transition-all duration-300 py-1"
+                            >
+                                Listen
                                 <span className="absolute left-0 bottom-0 w-0 h-[3px] bg-white transition-all duration-500 ease-out group-hover:w-full"></span>
                             </a>
                         </li>

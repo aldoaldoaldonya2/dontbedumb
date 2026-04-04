@@ -55,7 +55,7 @@ export default function Asap() {
     }, { scope: sectionRef });
 
     const content = (
-        <div className="container mx-auto px-4 md:px-0">
+        <div id="asap-rocky" className="container mx-auto px-4 md:px-0">
             <div className="">
                 <p className='font-notable text-center text-7xl max-md:text-4xl'>A<span className='font-lacquer'>$</span>AP Rocky</p>
                 <img src="/assets/images/gr1m.png" alt="" />

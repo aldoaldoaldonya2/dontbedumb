@@ -53,7 +53,6 @@ export default function Listen() {
             }
         );
 
-        // Simple subtle parallax on background
         gsap.to(".bg-grid", {
             y: 100,
             ease: "none",
@@ -70,7 +69,6 @@ export default function Listen() {
     return (
         <section ref={containerRef} id="listen" className="relative w-full py-32 flex flex-col items-center justify-center bg-black overflow-hidden border-y border-white/5">
 
-            {/* Very minimal grid background */}
             <div className="bg-grid absolute inset-0 z-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
             <div className="relative z-10 w-full max-w-[900px] px-6 flex flex-col items-center">

@@ -92,7 +92,7 @@ export default function Introduce() {
     }, []);
 
     return (
-        <div ref={triggerRef} className="overflow-hidden">
+        <div ref={triggerRef} id="characters" className="overflow-hidden">
             <div
                 className="flex h-screen flex-row will-change-transform transform-gpu"
                 style={{ width: `${TOTAL_SLIDES * 100}vw` }}
