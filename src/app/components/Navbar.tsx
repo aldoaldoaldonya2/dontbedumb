@@ -15,6 +15,8 @@ export default function Navbar() {
     const menuLinksRef = useRef<HTMLUListElement>(null);
     const characterRef = useRef<HTMLImageElement>(null);
     const menuOpenRef = useRef(isMenuOpen);
+    const [randomOverlay, setRandomOverlay] = useState("/assets/images/overlay1.png");
+
 
     useEffect(() => {
         menuOpenRef.current = isMenuOpen;
@@ -100,6 +102,11 @@ export default function Navbar() {
     }, [isMenuOpen]);
 
     const toggleMenu = () => {
+        if (!isMenuOpen) {
+            const images = ["/assets/images/overlay1.png", "/assets/images/overlay2.png", "/assets/images/overlay3.png"];
+            const randomIndex = Math.floor(Math.random() * images.length);
+            setRandomOverlay(images[randomIndex]);
+        }
         setIsMenuOpen(!isMenuOpen);
     };
 
@@ -149,7 +156,7 @@ export default function Navbar() {
                     pointerEvents: isMenuOpen ? "auto" : "none"
                 }}>
 
-                <h2 className="absolute top-10 left-10 text-3xl font-notable text-white/40 uppercase tracking-widest hidden md:block z-10">Navigation</h2>
+                <h2 className="absolute top-10 left-10 text-3xl font-notable text-white/40 uppercase tracking-widest hidden md:block z-10">Nav</h2>
 
                 <div className="absolute top-10 right-10 z-10 flex flex-col items-center gap-6 md:gap-10">
                     <div className="flex gap-10 md:gap-10">
@@ -226,7 +233,7 @@ export default function Navbar() {
                 <div className="absolute -bottom-20 -right-20 md:-bottom-25 md:-right-10 z-0 pointer-events-none">
                     <img
                         ref={characterRef}
-                        src="/assets/images/overlay.png"
+                        src={randomOverlay}
                         alt="Character Overlay"
                         className="w-[350px] md:w-[450px] object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.15)] opacity-0 mix-blend-screen"
                     />

@@ -15,8 +15,9 @@ export default function Story() {
             ease: "none",
             scrollTrigger: {
                 trigger: "#story",
-                scrub: true,
+                scrub: 1,
                 start: "top 20%",
+                end: "bottom top",
             }
         });
 
