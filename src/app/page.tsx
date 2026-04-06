@@ -5,7 +5,6 @@ import Story from "./partials/Story";
 import Marquee from "./partials/Marquee";
 import Introduce from "./partials/Introduce";
 import Asap from "./partials/Asap";
-import Listen from "./partials/Listen";
 import Footer from "./components/Footer";
 export default function Index() {
   return (
@@ -18,7 +17,6 @@ export default function Index() {
       <Introduce />
       <div className="h-[70vh] w-full bg-linear-to-b from-black to-white"></div>
       <Asap />
-      <Listen />
       <Footer />
     </main>
   );
